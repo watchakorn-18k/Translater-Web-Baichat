@@ -6,7 +6,7 @@ type Props = {
 };
 
 const ApiStatus = ({ url_api }: Props) => {
-  const [data, setData] = useState("sss");
+  const [data, setData] = useState("");
   useEffect(() => {
     const fetchData = () => {
       axios

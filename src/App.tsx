@@ -18,6 +18,7 @@ function App() {
         alignItems="center"
         spacing={2}
       >
+        <ApiStatus url_api={apiStatus} />
         <h1>Translate with GPT</h1>
         <InputText
           value={inputValue}
@@ -29,7 +30,6 @@ function App() {
           setResponseData={setResponseData}
         />
         <ShowResult />
-        <ApiStatus url_api={apiStatus} />
       </Stack>
     </>
   );

@@ -9,8 +9,7 @@ const InputText = ({ value, onChange }: Props) => {
   return (
     <>
       <TextField
-        sx={{ width: "80%" }}
-        fullWidth
+        sx={{ width: "54%" }}
         label="ป้อนข้อความ"
         type="text"
         value={value}
