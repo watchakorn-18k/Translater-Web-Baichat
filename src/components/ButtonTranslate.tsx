@@ -1,11 +1,13 @@
 import { Button } from "@mui/material";
 import axios from "axios";
 
-type Props = {
+type SetResponseData = React.Dispatch<React.SetStateAction<any>> | null;
+
+interface Props {
   prompt: string;
   api_url: string;
-  setResponseData: React.Dispatch<React.SetStateAction<any>>;
-};
+  setResponseData: SetResponseData;
+}
 
 const ButtonTranslate = ({ prompt, api_url, setResponseData }: Props) => {
   const handlePostRequest = async () => {
@@ -14,7 +16,7 @@ const ButtonTranslate = ({ prompt, api_url, setResponseData }: Props) => {
         text: `Translate this sentence ${prompt} into english and reponse with format ${prompt} : {word after translate into english}`,
       });
 
-      setResponseData(response.data);
+      setResponseData?.(response.data);
     } catch (error) {
       console.error(error);
     }

@@ -9,7 +9,7 @@ import InputText from "./components/InputText";
 function App() {
   const [inputValue, setInputValue] = useState("");
   const [apiStatus] = useState("https://srttranslategptapi--porton35.repl.co");
-  const [responseData, setResponseData] = useState(null);
+  const [setResponseData] = useState(null);
   return (
     <>
       <Stack
