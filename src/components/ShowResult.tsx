@@ -3,33 +3,17 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
-const parseOutputJson = (responseData: string) => {
-  const jsonSubstring = responseData.match(/Output: (.*)/)?.[1];
-
-  let output;
-  if (jsonSubstring) {
-    try {
-      output = JSON.parse(jsonSubstring);
-    } catch (error) {
-      console.error("Error parsing JSON:", error);
-    }
-  }
-
-  return output;
-};
-
 const ShowResult = () => {
-  const [responseData, setResponseData] = useState("");
+  const [responseData, setResponseData] = useState<{ th: string; en: string }>({
+    th: "",
+    en: "",
+  });
   useEffect(() => {
     const fetchData = () => {
       axios
         .get("https://srttranslategptapi--porton35.repl.co/generate-text")
         .then((response) => {
-          if (response.data.text !== "") {
-            setResponseData(parseOutputJson(response.data.text));
-          } else {
-            setResponseData("กำลังแปลอยู่รอสักครู่...");
-          }
+          setResponseData(response.data);
         })
         .catch((error) => {
           console.error(error);
@@ -64,9 +48,7 @@ const ShowResult = () => {
         >
           <ContentCopyIcon />
         </IconButton>
-        <div id="result">
-          {responseData.th !== undefined ? responseData.th : responseData}
-        </div>
+        <div id="result">{responseData.th}</div>
       </Paper>
       <Paper sx={{ p: 2, width: "50%" }}>
         <IconButton
@@ -76,9 +58,7 @@ const ShowResult = () => {
         >
           <ContentCopyIcon />
         </IconButton>
-        <div id="result">
-          {responseData.en !== undefined ? responseData.en : responseData}
-        </div>
+        <div id="result">{responseData.en}</div>
       </Paper>
     </>
   );
