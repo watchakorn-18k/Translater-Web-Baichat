@@ -13,7 +13,7 @@ const ButtonTranslate = ({ prompt, api_url, setResponseData }: Props) => {
   const handlePostRequest = async () => {
     try {
       const response = await axios.post(api_url + "/generate", {
-        text: `Translate this sentence ${prompt} into thai and english then reponse with format {"th":"word after translate into thai" , "en": "word after translate into english"}`,
+        text: `Translate this sentence ${prompt} into thai and english then reponse with in format {"th":"word after translate into thai" , "en": "word after translate into english"} all both should key:value only don't have choice more`,
       });
 
       setResponseData?.(response.data);

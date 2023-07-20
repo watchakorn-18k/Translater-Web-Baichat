@@ -13,7 +13,14 @@ const ShowResult = () => {
       axios
         .get("https://srttranslategptapi--porton35.repl.co/generate-text")
         .then((response) => {
-          setResponseData(response.data);
+          if (response.data.th && response.data.en) {
+            setResponseData(response.data);
+          } else {
+            setResponseData({
+              th: "รอการแปลงสักครู่...",
+              en: "รอการแปลงสักครู่...",
+            });
+          }
         })
         .catch((error) => {
           console.error(error);
